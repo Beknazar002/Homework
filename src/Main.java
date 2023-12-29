@@ -1,33 +1,24 @@
+import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
-        int result1 = goForWalk(25, 20);
-        int result2 = goForWalk(18, 25);
-        int result3 = goForWalk(50, 15);
-        int result4 = goForWalk(30, 10);
-        int result5 = goForWalk(40, 5);
+        double[] numbers = {5.6, -1.6, -3.5, 7.9, -6.5, 3.4, 7.8, 5.1, -9.4, 5.9, 4.2, 1.8, 6.6, -3.1, 8.7};
+        boolean foundNegative = false;
+        double sum = 0;
+        int count = 0;
 
-        printResult(result1);
-        printResult(result2);
-        printResult(result3);
-        printResult(result4);
-        printResult(result5);
-    }
-
-    public static int goForWalk(int age, int temperature) {
-        if ((age >= 20 && age <= 45 && temperature >= -20 && temperature <= 30) ||
-                (age < 20 && temperature >= 0 && temperature <= 28) ||
-                (age > 45 && temperature >= -10 && temperature <= 25)) {
-            return 1; // "Можно идти гулять"
-        } else {
-            return 0; // "Оставайтесь дома"
+        for (double number : numbers) {
+            if (foundNegative && number > 0) {
+                sum += number;
+                count++;
+            } else if (!foundNegative && number < 0) {
+                foundNegative = true;
+            }
         }
-    }
 
-    public static void printResult(int result) {
-        if (result == 1) {
-            System.out.println("Можно идти гулять");
-        } else {
-            System.out.println("Оставайтесь дома");
+        if (count > 0) {
+            double average = sum / count;
+            System.out.println(average);
+
         }
     }
 }
